@@ -6,6 +6,7 @@ from flask_login import LoginManager
 bootstrap = Bootstrap()
 login_manager = LoginManager()
 
+
 def create_app(config_name):
     app = Flask(__name__)
 
@@ -22,6 +23,6 @@ def create_app(config_name):
     app.register_blueprint(home_blueprint)
 
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint,url_prefix = '/auth')
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     return app
