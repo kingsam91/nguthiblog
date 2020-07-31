@@ -12,6 +12,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), unique=True, index=True)
     password_hash = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    posts = db.relationship('Post', backref='user', lazy="dynamic")
+
 
     pass_secure  = db.Column(db.String(255))
 
@@ -47,7 +49,8 @@ class Post(db.Model):
     title = db.Column(db.String(255))
     content = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)    
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')   
 
 class Comment(db.Model):
     __tablename__ = 'comments'
