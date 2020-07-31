@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template,flash
 from . import auth
 from ..models import User
 from .forms import LoginForm, RegistrationForm

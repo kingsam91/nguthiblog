@@ -48,3 +48,12 @@ class Post(db.Model):
     content = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)    
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
