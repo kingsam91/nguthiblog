@@ -6,20 +6,24 @@
 <div class="container">
 
     {% if message%}
-    <h3>{{message}}</h3>
+    <div class="alert alert-success">
+        <strong>Success!</strong> {{message}}
+    </div>
+      
     {%endif%}
 
     <form method="POST">
         <div class="form-group">
-  
-            <label>Title</label>
             <input type="text" name="title" class="form-control" placeholder="Title">
-            <tr></tr>
+        </div>    
+        <div class="form-group">
             <input type="text" name="image_url" class="form-control" placeholder="image_url"><td>
-            <textarea rows="3" placeholder="Write post here..."></textarea><td>
+        </div>        
+        <div class="form-group">
+            <textarea class="form-control" name="content" rows="3" placeholder="Write post here..."></textarea><td>
         </div>
         <input type="hidden" name="user_id" value="{{current_user.id}}" />
-        <input type="submit" value="Submit" class="btn btn-default">
+        <input type="submit" value="Submit" class="btn btn-primary">
     </form>
 
 </div>

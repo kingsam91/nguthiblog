@@ -47,12 +47,12 @@ class Post(db.Model):
     title = db.Column(db.String(255))
     image_url = db.Column(db.String(255))
     title = db.Column(db.String(255))
-    content = db.Column(db.Text())
+    content = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     comments = db.relationship('Comment', backref='post', lazy='dynamic')   
 
-    def save_posts(self):
+    def save_post(self):
         db.session.add(self)
         db.session.commit()
 
