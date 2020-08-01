@@ -1,6 +1,6 @@
 from . import db, login_manager
 import datetime
-from flask import Flask
+from flask import Flask,request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -51,6 +51,20 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow) 
     comments = db.relationship('Comment', backref='post', lazy='dynamic')   
+
+    def save_posts(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_posts(cls):
+        rows = Post.query.all()
+        return rows
+
+    @classmethod
+    def get_my_posts(cls, id):
+        rows = Post.query.filter_by(user_id=id).all()
+        return rows
 
 class Comment(db.Model):
     __tablename__ = 'comments'
