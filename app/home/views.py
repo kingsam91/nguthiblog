@@ -32,5 +32,13 @@ def dashboard():
     """
     return render_template('home/dashboard.html', title="Dashboard")
 
+@home.route('/profile/<int:id>')
+def profile(id):    
+    """
+    Render the dashboard template on the /dashboard route
+    """
+
+    return render_template('home/profile.html', title="Profile")
+
 
     
