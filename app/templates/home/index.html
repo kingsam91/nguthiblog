@@ -4,11 +4,15 @@
 
 <div class="container">
     <div class="row">
+        {% for id, title, content, image_url, created_at in myposts %}
         <div class="col-lg-3 img-container">
-            <img src="https://via.placeholder.com/150" alt="">
-            <h3>Created: 06/07/20 19:21 </h3>
-            <h4>Sample title </h4>
+            <a href="{{url_for('home.single_post',id=id)}}">
+                <img src="{{image_url}}" alt="">
+                <small>Posted {{created_at}}</small>
+                <p>{{title}}</p>
+            </a>
         </div>
+        {% endfor %}
     </div>
     <footer>
         <div class="row">

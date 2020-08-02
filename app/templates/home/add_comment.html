@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+<!-- Content block -->
+{% block content %}
+<form method="POST">
+    <div class="form-group">
+        <textarea class="form-control" name="content" rows="3" placeholder="Write comment here..."></textarea><td>
+    </div>
+    <input type="hidden" name="user_id" value="{{current_user.id}}" />
+</form>
+
+
+{% endblock%}

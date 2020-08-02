@@ -7,7 +7,28 @@ from . import home
 
 @home.route('/')
 def index():
-    return render_template('home/index.html')
+
+    rows = Post.get_posts()
+
+    id = []
+    title = []
+    content = []
+    image_url = []
+    created_at = []
+
+
+    for row in rows:
+        id.append(row.id)
+        title.append(row.title)
+        content.append(row.content)
+        image_url.append(row.image_url)
+        created_at.append(row.created_at)
+
+    mylist = zip(id, title, content, image_url, created_at)
+
+    print(rows)
+
+    return render_template('home/index.html', myposts=mylist)
 
 @home.route('/add_post', methods=['GET', 'POST'])
 def add_post_form():
@@ -40,6 +61,15 @@ def profile(id):
     """
 
     return render_template('home/profile.html', title="Profile")
+
+@home.route('/post/<int:id>')
+def single_post(id):
+    """
+    Render the dashboard template on the /dashboard route
+    """
+
+    return render_template('home/single_post.html', title="Post")
+
 
 @home.route('/new-post',  methods=['GET', 'POST'])
 def new_post():
