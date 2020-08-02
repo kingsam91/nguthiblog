@@ -1,6 +1,6 @@
-from flask import render_template,request
+from flask import render_template,request,redirect,url_for
 from flask_login import login_required
-from ..models import Post
+from ..models import Post,Comment
 
 from . import home
 
@@ -61,14 +61,23 @@ def profile(id):
 
     return render_template('home/profile.html', title="Profile")
 
-@home.route('/post/<int:id>')
+@home.route('/post/<int:id>', methods=['GET','POST'])
 @login_required
 def single_post(id):
     """
     Render the dashboard template on the /dashboard route
     """
-
     post = Post.get_post(id)
+
+    if request.method == 'POST':
+        message = request.form.get('message')
+        user_id = request.form.get('user_id')
+        post_id = post.id
+
+        comment = Comment(message=message, user_id=user_id, post_id=post_id)
+        comment.save_comment()
+
+        return redirect(url_for('home.single_post', id=id))
 
     return render_template('home/single_post.html', title="Post", post=post)
 

@@ -14,11 +14,16 @@
 
         <small>{{post.created_at}}</small>
 
-        <div class="form-group" style="margin-top: 15px;">
-          <textarea class="form-control" rows="5" placeholder="Write comment here..."></textarea>
-        </div>
+        <hr/>
 
-        <button class="btn btn-primary" type="submit">Post</button>
+        <form method="POST">
+          <div class="form-group" style="margin-top: 15px;">
+            <textarea class="form-control col-lg-3" rows="5" placeholder="Write comment here..." name="message"></textarea>
+          </div>
+          
+          <input type="hidden" name="user_id" value="{{current_user.id}}" />
+          <button class="btn btn-primary" type="submit">Post</button>
+        </form>
       </div>
     </div>
   </div>
