@@ -26,8 +26,6 @@ def index():
 
     mylist = zip(id, title, content, image_url, created_at)
 
-    print(rows)
-
     return render_template('home/index.html', myposts=mylist)
 
 @home.route('/add_post', methods=['GET', 'POST'])
@@ -55,6 +53,7 @@ def dashboard():
     return render_template('home/dashboard.html', title="Dashboard")
 
 @home.route('/profile/<int:id>')
+@login_required
 def profile(id):    
     """
     Render the dashboard template on the /dashboard route
@@ -63,12 +62,15 @@ def profile(id):
     return render_template('home/profile.html', title="Profile")
 
 @home.route('/post/<int:id>')
+@login_required
 def single_post(id):
     """
     Render the dashboard template on the /dashboard route
     """
 
-    return render_template('home/single_post.html', title="Post")
+    post = Post.get_post(id)
+
+    return render_template('home/single_post.html', title="Post", post=post)
 
 
 @home.route('/new-post',  methods=['GET', 'POST'])

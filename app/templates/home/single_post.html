@@ -7,13 +7,18 @@
 <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h1>title</h1>
-        <p>Post description</p>
-        <small>01/08/2020</small>
-        <div class="form-group">
+        <h1>{{post.title}}</h1>
+        <img src="{{post.image_url}}" alt="post" />
+
+        <p>{{post.content}}</p>
+
+        <small>{{post.created_at}}</small>
+
+        <div class="form-group" style="margin-top: 15px;">
           <textarea class="form-control" rows="5" placeholder="Write comment here..."></textarea>
         </div>
-        <button class="btn btn-secoondary" type="submit">Post</button>
+
+        <button class="btn btn-primary" type="submit">Post</button>
       </div>
     </div>
   </div>

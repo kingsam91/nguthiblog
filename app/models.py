@@ -62,6 +62,11 @@ class Post(db.Model):
         return rows
 
     @classmethod
+    def get_post(cls, id):
+        row = Post.query.filter_by(id=id).first()
+        return row   
+
+    @classmethod
     def get_my_posts(cls, id):
         rows = Post.query.filter_by(user_id=id).all()
         return rows
