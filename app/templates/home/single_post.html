@@ -16,13 +16,23 @@
 
         <hr/>
 
+        <h3>Comments</h3>
+
+        {% for id, message, created_at in comments  %}        
+        <div >
+           <p>{{message}}</p>
+        </div>
+        {% endfor %}
+
         <form method="POST">
-          <div class="form-group" style="margin-top: 15px;">
-            <textarea class="form-control col-lg-3" rows="5" placeholder="Write comment here..." name="message"></textarea>
+          <input type="hidden" name="user_id" value="{{current_user.id}}" />
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Write comment here..." name="message"></textarea>
           </div>
           
-          <input type="hidden" name="user_id" value="{{current_user.id}}" />
-          <button class="btn btn-primary" type="submit">Post</button>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">Post</button>
+          </div>
         </form>
       </div>
     </div>

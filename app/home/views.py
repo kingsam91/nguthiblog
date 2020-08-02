@@ -68,6 +68,19 @@ def single_post(id):
     Render the dashboard template on the /dashboard route
     """
     post = Post.get_post(id)
+    rows = Comment.get_comments_by_post_id(post.id)
+
+    id = []
+    message = []
+    created_at = []
+
+
+    for row in rows:
+        id.append(row.id)
+        message.append(row.message)
+        created_at.append(row.created_at)
+
+    mycomments = zip(id, message, created_at)
 
     if request.method == 'POST':
         message = request.form.get('message')
@@ -79,10 +92,11 @@ def single_post(id):
 
         return redirect(url_for('home.single_post', id=id))
 
-    return render_template('home/single_post.html', title="Post", post=post)
+    return render_template('home/single_post.html', title="Post", post=post, comments=mycomments)
 
 
 @home.route('/new-post',  methods=['GET', 'POST'])
+@login_required
 def new_post():
     """
     Render the dashboard template on the /dashboard route

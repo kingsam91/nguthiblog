@@ -83,3 +83,13 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+    # @classmethod
+    # def get_comments(cls):
+    #     rows = Comment.query.all()
+    #     return rows
+
+    @classmethod
+    def get_comments_by_post_id(cls, id):
+        rows = Comment.query.filter_by(post_id=id).all()
+        return rows
