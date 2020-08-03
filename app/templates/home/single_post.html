@@ -22,6 +22,9 @@
         <div >
            <p>{{message}}</p>
         </div>
+        <a href="{{url_for('home.delete_comment',id=id,post=post.id)}}">
+          <button type="button" class="btn btn-danger">delete</button>
+        </a>
         {% endfor %}
 
         <form method="POST">

@@ -93,3 +93,13 @@ class Comment(db.Model):
     def get_comments_by_post_id(cls, id):
         rows = Comment.query.filter_by(post_id=id).all()
         return rows
+
+    @classmethod
+    def delete_comment_by_id(cls, id):
+        rows = Comment.query.filter_by(id=id).delete()
+        return rows
+
+    @classmethod
+    def get_post_by_comment_id(cls, id):
+        rows = Comment.query.filter_by(post_id=id).all()
+        return rows    
