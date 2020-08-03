@@ -90,7 +90,7 @@ def single_post(id):
         comment = Comment(message=message, user_id=user_id, post_id=post_id)
         comment.save_comment()
 
-        return redirect(url_for('home.single_post', id=id))
+        return redirect(url_for('home.single_post', id=post.id))
 
     return render_template('home/single_post.html', title="Post", post=post, comments=mycomments)
 
