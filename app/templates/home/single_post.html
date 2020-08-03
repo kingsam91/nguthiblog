@@ -20,16 +20,16 @@
 
         {% for id, message, created_at in comments  %}        
         <div >
-           <p>{{message}}</p>
+           <p style="margin-bottom: 0; margin-top: 10px;">{{message}}</p>
         </div>
         <a href="{{url_for('home.delete_comment',id=id,post=post.id)}}">
-          <button type="button" class="btn btn-danger">delete</button>
+          <button type="button" class="btn btn-danger">Delete</button>
         </a>
         {% endfor %}
 
         <form method="POST">
           <input type="hidden" name="user_id" value="{{current_user.id}}" />
-          <div class="form-group">
+          <div class="form-group" style="margin-top: 10px;">
             <textarea class="form-control" rows="5" placeholder="Write comment here..." name="message"></textarea>
           </div>
           

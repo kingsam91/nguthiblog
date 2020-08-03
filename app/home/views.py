@@ -121,14 +121,9 @@ def delete_comment(id, post):
     """
     Render the dashboard template on the /dashboard route
     """
-    
-    # post = Post.get_post(id)
-    print("ID:")
-    print(post)
-    # Comment.delete_comment_by_id(id)
+    Comment.delete_comment_by_id(id)
 
-    return render_template('home/add_post.html', title="New Post")
-    # return redirect(url_for('home.single_post', id=post))
+    return redirect(url_for('home.single_post', id=post))
    
 
 

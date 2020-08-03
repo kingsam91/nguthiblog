@@ -96,8 +96,11 @@ class Comment(db.Model):
 
     @classmethod
     def delete_comment_by_id(cls, id):
-        rows = Comment.query.filter_by(id=id).delete()
-        return rows
+        single_comment = Comment.query.filter_by(id = id).first()
+
+        db.session.delete(single_comment)
+        db.session.commit()
+
 
     @classmethod
     def get_post_by_comment_id(cls, id):
